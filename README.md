@@ -3,4 +3,6 @@
 
 
 ## Create React App으로 typescript 기반의 리액트 프로젝트 생성
-```npx create-react-app my-app --template typescript```
+```
+npx create-react-app my-app --template typescript
+```
