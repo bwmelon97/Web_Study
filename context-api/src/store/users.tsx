@@ -1,20 +1,14 @@
 import React, { ReactNode, createContext } from "react";
 
-
-const getUserDataReqest = (): userType => {
-    return {
-        name: 'soogeun',
-        job: 'developer'
-    }
-}
+import { useGetReqAPI_User } from "../hooks/useGetReqAPI";
 
 /* UserContext */
-type userType = {
+export type userType = {
     name: String;
     job: String;
 }
 
-const defaultUser: userType = {
+export const defaultUser: userType = {
     name: '',
     job: '',
 };
@@ -28,7 +22,7 @@ type UserStoreProps = {
 }
 
 function UserStore (props: UserStoreProps) {
-    const user: userType = getUserDataReqest();
+    const { user } = useGetReqAPI_User();
     return (
         <UserContext.Provider value={user} >
             {props.children}
