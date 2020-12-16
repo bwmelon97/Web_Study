@@ -2,13 +2,13 @@ import React, { useContext } from "react";
 
 import { UserContext } from "../store/users";
 
-function Profile () {
+function Manage () {
 
     const context = useContext(UserContext);
 
     return(
         <div>
-            <h2> Profile </h2>
+            <h2> Manage </h2>
             <p>
                 job : { context.job }
             </p>
@@ -17,4 +17,4 @@ function Profile () {
 
 }
 
-export default Profile;
+export default Manage;
