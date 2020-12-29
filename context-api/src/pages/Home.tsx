@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from 'react-router-dom';
 
 import { UserContext } from "../store/users";
+import StupidAccordian from "../components/StupidAccordian";
 
 function Home () {
 
@@ -15,6 +16,8 @@ function Home () {
 
             <Link to='/board' > Board </Link>
             <Link to='/manage' > Manage </Link>
+
+            <StupidAccordian />
         </div>
     )
 }
