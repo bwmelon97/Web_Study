@@ -12,3 +12,23 @@ $ npx create-react-app my-app --template typescript
 ```bash
 $ yarn add styled-components & yarn add @types/styled-components
 ```
+
+---
+
+## 프로젝트 목록
+* context api : React Context를 모듈화 시켜서 사용하는 방법에 대해 공부
+
+
+---
+## Study Plan
+* hooks
+  - useMemo, useCallback
+  - useRef, useRedux
+  - custom hooks
+  - 실전형 React Hooks (Nomad Coder 강의)
+* Redux
+  - 미들웨어
+  - 비동기 처리 (thunk, saga)
+* CSS in JS
+* SSR (Next.js)
+* GraphQL + Apollo
