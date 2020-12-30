@@ -20,19 +20,21 @@ const SmartAccordianContext = createContext(defaultContext);
 ///////////
 
 type SmartAccordianProps = {
-    title: String;
-    content: String;
+    title: string;          // Header 부분에 들어가는 제목
+    content: string;        // Body 부분에 들어가는 내용물
+    className?: string;     //
+    color?: string;         //
 }
 
-function SmartAccordian( {title, content}: SmartAccordianProps ) {
+function SmartAccordian( {title, content, className, color}: SmartAccordianProps ) {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const value: SmartAccordianContextType = { isOpen, setIsOpen };
 
     return (
         <SmartAccordianContext.Provider value={value} >
-            <S.AccordianWrapper>
-                <SmartAccordianHeader title={title} isOpen={isOpen} setIsOpen={setIsOpen} />
-                <SmartAccordianBody content={content} isOpen={isOpen} />
+            <S.AccordianWrapper className={className} >
+                <SmartAccordianHeader title={title} isOpen={isOpen} setIsOpen={setIsOpen} color={color} />
+                <SmartAccordianBody content={content} isOpen={isOpen} color={color} />
             </S.AccordianWrapper>
         </SmartAccordianContext.Provider>
     )

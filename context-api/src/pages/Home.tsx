@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from 'react-router-dom';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
 import { UserContext } from "../store/users";
 import StupidAccordian from "../components/StupidAccordian";
@@ -24,16 +24,17 @@ function Home () {
                 title="I'm Smart Accordian" 
                 content='And also have warm heart :D'
             />
-            {/* <StyledAccordian 
+            <StyledAccordian 
                 title="I'm Styled Accordian ^_^"
                 content="hehe~"
-            /> */}
+                color='#AFEEEE'
+            />
         </div>
     )
 }
 
-// const StyledAccordian = styled(SmartAccordian)`
-//     width: 300px;
-// `;
+const StyledAccordian = styled(SmartAccordian)`
+    width: 300px;
+`;
 
 export default Home;

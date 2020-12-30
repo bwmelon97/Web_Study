@@ -4,10 +4,14 @@ export const AccordianWrapper = styled.div`
     width: 250px;
 `;
 
-export const HeaderWrapper = styled.div`
+type ColorProps = {
+    color?: string;
+}
+
+export const HeaderWrapper = styled.div<ColorProps>`
     height: 50px;
 
-    background-color: pink;
+    background-color: ${props => props.color ? props.color : "pink"};
     cursor: pointer;
 
     /* 글자의 드레그, 더블클릭, 블럭지정을 방지 */
@@ -22,11 +26,15 @@ export const HeaderWrapper = styled.div`
     justify-content: center;
 `;
 
-export const BodyWrapper = styled.div<{isOpen: boolean}>`
+type BodyWrapperProps = ColorProps & {
+    isOpen: boolean;    
+}
+
+export const BodyWrapper = styled.div<BodyWrapperProps>`
     height: 150px;
     padding: 20px;
 
-    border: solid 1px pink;
+    border: solid 1px ${props => props.color ? props.color : 'pink' }  ;
 
     display: ${props => props.isOpen ? 'flex' : 'none'};
 `;
