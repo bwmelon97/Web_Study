@@ -29,12 +29,27 @@ function Home () {
                 content="hehe~"
                 color='#AFEEEE'
             />
+            <SmartAccordian 
+                title="I'm Smart Accordian" 
+                content='And also have warm heart :D'
+                CustomBody={ <SimpleBody /> }
+            />
         </div>
     )
 }
 
+
+/* Example */
 const StyledAccordian = styled(SmartAccordian)`
     width: 300px;
 `;
+
+function SimpleBody() {
+    return (
+        <div>
+            Hello World !!
+        </div>
+    )
+}
 
 export default Home;
