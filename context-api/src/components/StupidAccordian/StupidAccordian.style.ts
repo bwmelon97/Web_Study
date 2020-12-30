@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
 `;
 
 export const Header = styled.div`
-    width: 100%;
     height: 50px;
 
     background-color: gray;
@@ -29,7 +28,6 @@ type BodyProps = {
 }
 
 export const Body = styled.div <BodyProps> `
-    /* width: 100%; */
     height: 150px;
     padding: 20px;
 
