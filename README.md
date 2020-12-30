@@ -15,7 +15,7 @@ $ yarn add styled-components & yarn add @types/styled-components
 
 ---
 
-## 프로젝트 목록
+## Project List
 * context api : React Context를 모듈화 시켜서 사용하는 방법에 대해 공부
 
 
