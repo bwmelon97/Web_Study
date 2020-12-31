@@ -31,4 +31,8 @@ $ yarn add styled-components & yarn add @types/styled-components
   - 비동기 처리 (thunk, saga)
 * CSS in JS
 * SSR (Next.js)
+* CRA 없이 React 프로젝트 만들기
+  - Babel
+  - Webpack
+    - 모듈 import 시, src 경로 설정하기
 * GraphQL + Apollo
