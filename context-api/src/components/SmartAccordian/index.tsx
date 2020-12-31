@@ -27,14 +27,14 @@ export const useAccordianContext = () => useContext(SmartAccordianContext);
 type SmartAccordianProps = {
     title: string;          // Header 부분에 들어가는 제목
     content: string;        // Body 부분에 들어가는 내용물
-    className?: string;     //
-    color?: string;         //
-    CustomBody?: ReactNode; //
+    className?: string;     // Styled-Component로 직접 스타일을 추가할 수 있음
+    color?: string;         // 특정 color를 직접 지정할 수 있도록 함
+    CustomBody?: ReactNode; // Body 부분에 Customising한 컴포넌트를 넣을 수 있도록 함
 }
 
 function SmartAccordian( {title, content, className, color, CustomBody}: SmartAccordianProps ) {
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const value: SmartAccordianContextType = { isOpen, setIsOpen };
+    const value: SmartAccordianContextType = { isOpen, setIsOpen };     /* 사실상 state를 context에 담는 것임. */
 
     return (
         <SmartAccordianContext.Provider value={value} >
