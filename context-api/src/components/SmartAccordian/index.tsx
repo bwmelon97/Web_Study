@@ -1,9 +1,11 @@
-import React, { createContext, Dispatch, ReactNode, useState } from "react";
+import React, { createContext, Dispatch, ReactNode, useContext, useState } from "react";
 
 import * as S from "./SmartAccordian.style";
 import SmartAccordianHeader from "./SmartAccordianHeader";
 import SmartAccordianBody from "./SmartAccordianBody";
 
+
+/* SmartAccordian Context */
 
 type SmartAccordianContextType = {
     isOpen: boolean;
@@ -17,7 +19,10 @@ const defaultContext: SmartAccordianContextType = {
 
 const SmartAccordianContext = createContext(defaultContext);
 
-///////////
+export const useAccordianContext = () => useContext(SmartAccordianContext);
+
+
+/* SmartAccordian Component */
 
 type SmartAccordianProps = {
     title: string;          // Header 부분에 들어가는 제목
@@ -34,8 +39,8 @@ function SmartAccordian( {title, content, className, color, CustomBody}: SmartAc
     return (
         <SmartAccordianContext.Provider value={value} >
             <S.AccordianWrapper className={className} >
-                <SmartAccordianHeader title={title} isOpen={isOpen} setIsOpen={setIsOpen} color={color} />
-                <SmartAccordianBody content={content} isOpen={isOpen} color={color} CustomBody={CustomBody} />
+                <SmartAccordianHeader title={title} color={color} />
+                <SmartAccordianBody content={content} color={color} CustomBody={CustomBody} />
             </S.AccordianWrapper>
         </SmartAccordianContext.Provider>
     )

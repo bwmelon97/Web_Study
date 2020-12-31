@@ -1,15 +1,18 @@
-import React, { Dispatch } from "react";
+import React from "react";
 
 import * as S from "./SmartAccordian.style";
+import { useAccordianContext } from "./";
+
 
 type SmartAccordianHeaderProps = {
     title: string;
-    isOpen: boolean;
-    setIsOpen: Dispatch<boolean>
     color?: string;
 }
 
-function SmartAccordianHeader({title, isOpen, setIsOpen, color}: SmartAccordianHeaderProps) {    
+function SmartAccordianHeader({title, color}: SmartAccordianHeaderProps) {    
+    
+    const { isOpen, setIsOpen } = useAccordianContext();
+    
     return (
         <S.HeaderWrapper onClick={() => setIsOpen(!isOpen)} color={color} >
             { title }
