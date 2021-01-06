@@ -3,16 +3,17 @@ import React, { useMemo, useState } from "react";
 
 const testVaildID = (id: string): boolean => {
     console.log('id: ' + id);
+    /* 착한 사람 눈에는 비싼 연산이 보여요 *^^* */
     return id.search('@') !== -1;   // id에 @가 있으면 true 없으면 false
 }
 
 const testValidPW = (pw: string): boolean => {
     console.log('pw: ' + pw);
+    /* 착한 사람 눈에는 비싼 연산이 보여요 *^^* */
     return pw.length >= 6;
 }
 
 function LoginInput () {
-
     const [id, setID] = useState<string>('');
     const [pw, setPW] = useState<string>('');
 
@@ -43,7 +44,6 @@ function LoginInput () {
             {!isValidPW && '비밀번호는 6자리 이상으로 해주세요'}
         </div>
     )
-
 }
 
 export default LoginInput;
