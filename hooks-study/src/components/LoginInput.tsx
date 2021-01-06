@@ -16,6 +16,20 @@ function LoginInput () {
     const [id, setID] = useState<string>('');
     const [pw, setPW] = useState<string>('');
 
+    /* Study useEffect */
+    // let isValidID = false;
+    // useEffect(() => {
+    //     isValidID = testVaildID(id);
+    // }, [id])
+
+    // useEffect(() => { 
+    //     const foo = setInterval(() => {
+    //         setID(id => id + 1);
+    //     }, 1000)
+    //     return () => clearInterval(foo); 
+    // }, [])
+    /* ////////////////////////////// */
+
     // const isValidID = testVaildID(id);
     // const isVaildPW = testValidPW(pw);
     const isValidID = useMemo(() => testVaildID(id), [id]);
