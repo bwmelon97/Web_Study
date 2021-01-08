@@ -1,6 +1,6 @@
 import React from "react";
 
-import { LoginInput } from "./components";
+import { LoginInput, Counter } from "./components";
 
 
 function App() {
@@ -8,6 +8,7 @@ function App() {
     return (
         <div>
             <LoginInput />
+            <Counter />
         </div>
     )
 }
