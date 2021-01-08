@@ -6,10 +6,10 @@ import { LoginInput, Counter } from "./components";
 function App() {
 
     return (
-        <div>
+        <>
             <LoginInput />
             <Counter />
-        </div>
+        </>
     )
 }
 
