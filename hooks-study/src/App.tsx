@@ -1,14 +1,16 @@
 import React from "react";
 
-import { LoginInput, Counter } from "./components";
+import { TextInput, UseRefTest } from "./components";
 
 
 function App() {
 
     return (
         <>
-            <LoginInput />
-            <Counter />
+            {/* <LoginInput />
+            <Counter /> */}
+            <TextInput />
+            <UseRefTest />
         </>
     )
 }
