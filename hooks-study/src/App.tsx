@@ -1,13 +1,13 @@
 import React from "react";
 
-import { N } from "./components";
+import { TextInput } from "./nomad-components";
 
 
 function App() {
 
     return (
         <>
-            <N.TextInput />
+            <TextInput />
         </>
     )
 }
