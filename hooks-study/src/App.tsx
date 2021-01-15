@@ -1,13 +1,13 @@
 import React from "react";
 
-import { TextInput } from "./nomad-components";
+import { UseTabExample } from "./nomad-components";
 
 
 function App() {
 
     return (
         <>
-            <TextInput />
+            <UseTabExample />
         </>
     )
 }
