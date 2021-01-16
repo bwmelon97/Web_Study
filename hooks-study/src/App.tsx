@@ -1,14 +1,16 @@
 import React from "react";
+import { Switch, Route } from 'react-router-dom';
 
-import { UseTabExample } from "./nomad-components";
+import { Home, Profile } from "./pages";
 
 
 function App() {
 
     return (
-        <>
-            <UseTabExample />
-        </>
+        <Switch>
+            <Route exact path='/' > <Home /> </Route>
+            <Route path='/profile' > <Profile /> </Route>
+        </Switch>
     )
 }
 
