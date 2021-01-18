@@ -1,16 +1,14 @@
 import React from "react";
-import { Switch, Route } from 'react-router-dom';
 
-import { Home, Profile } from "./pages";
+import { UseConfirmExample } from "./nomad-components";
 
 
 function App() {
 
     return (
-        <Switch>
-            <Route exact path='/' > <Home /> </Route>
-            <Route path='/profile' > <Profile /> </Route>
-        </Switch>
+        <>
+            <UseConfirmExample />
+        </>
     )
 }
 
