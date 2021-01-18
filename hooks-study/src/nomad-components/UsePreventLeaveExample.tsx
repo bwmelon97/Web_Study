@@ -1,10 +1,10 @@
 import React, {  } from "react";
-import useBeforeLeave from "../nomad-hooks/useBeforeLeave";
+import { usePreventLeave } from "../nomad-hooks";
 
 
-function UseBeforeLeaveExample () {
+function UsePreventLeaveExample () {
 
-    const { lockLeaving, unLockLeaving } = useBeforeLeave();
+    const { lockLeaving, unLockLeaving } = usePreventLeave();
 
     return (
         <>
@@ -15,4 +15,4 @@ function UseBeforeLeaveExample () {
     )
 }
 
-export default UseBeforeLeaveExample;
+export default UsePreventLeaveExample;

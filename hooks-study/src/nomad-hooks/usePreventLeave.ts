@@ -1,4 +1,4 @@
-function useBeforeLeave () {
+function usePreventLeave () {
 
     const preventLeave = (event: BeforeUnloadEvent) => {
         event.preventDefault();
@@ -14,4 +14,4 @@ function useBeforeLeave () {
     }
 }
 
-export default useBeforeLeave;
+export default usePreventLeave;
