@@ -1,10 +1,13 @@
 import React, {  } from "react";
-import { usePreventLeave } from "../nomad-hooks";
+import { usePreventLeave, useBeforeLeave } from "../nomad-hooks";
 
 
 function UsePreventLeaveExample () {
 
     const { lockLeaving, unLockLeaving } = usePreventLeave();
+
+    const begForLife = () => { console.log("Please Don't leave me") }
+    useBeforeLeave(begForLife);
 
     return (
         <>
