@@ -1,16 +1,14 @@
 import React, {  } from "react";
+import useConfirm from "../nomad-hooks/useConfirm";
 
 
 function UseConfirmExample () {
 
-    const onClick = () => {
-        if ( window.confirm('정말로 삭제하시겠습니까?') ) {
-            console.log('hi')
-        } 
-        else {
-            console.log('fail')
-        }
-    }
+    const message = '정말로 삭제하시겠습니까?';
+    const onConfirm = () => { console.log('삭제') }
+    const onCancle = () => { console.log('취소') }
+
+    const onClick = useConfirm({ message, onConfirm, onCancle })
 
     return (
         <>
