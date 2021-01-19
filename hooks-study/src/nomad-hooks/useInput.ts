@@ -1,12 +1,12 @@
 import  { ChangeEvent, useState } from "react";
 
-type useInputArgs = {
+type UseInputArgs = {
     initialValue?: string;                      // Input에 들어갈 초기 값
     placeHolder?: string;                       // Input 태그에 들어갈 PlaceHolder 값
     validator?: (value: string) => boolean;     // value를 업데이트 하기 전에 유효한 값인지 확인하는 함수
 }
 
-const defaultArgs: useInputArgs = {
+const defaultArgs: UseInputArgs = {
     initialValue: '',
     placeHolder: ''
 }
@@ -15,7 +15,7 @@ const useInput = ({
     initialValue = '',
     placeHolder = '', 
     validator = undefined 
-}: useInputArgs = defaultArgs
+}: UseInputArgs = defaultArgs
 ) => {
 
     const [ value, setValue ] = useState(initialValue);
