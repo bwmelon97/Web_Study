@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 
-type TransitionStyle = {
+export type TransitionStyle = {
     duration?: number;
     delay?: number;
 }

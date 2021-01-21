@@ -7,7 +7,7 @@ function UseFadeInExample() {
 
     return (
         <>
-            <UseFadeIn>
+            <UseFadeIn transitionStyle={{delay: 1, duration: 3}} >
                 <h1>hello</h1>
             </UseFadeIn>
         </>
