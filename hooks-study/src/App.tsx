@@ -1,13 +1,13 @@
 import React from "react";
 
-import { UseBeforeLeaveExample } from "./nomad-components";
+import { UseFadeInExample } from "./nomad-components";
 
 
 function App() {
 
     return (
         <>
-            <UseBeforeLeaveExample />
+            <UseFadeInExample />
         </>
     )
 }
