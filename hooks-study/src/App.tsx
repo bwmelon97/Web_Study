@@ -1,13 +1,13 @@
 import React from "react";
 
-import { UseFadeInExample } from "./nomad-components";
+import { UseNetworkExample } from "./nomad-components";
 
 
 function App() {
 
     return (
         <>
-            <UseFadeInExample />
+            <UseNetworkExample />
         </>
     )
 }
