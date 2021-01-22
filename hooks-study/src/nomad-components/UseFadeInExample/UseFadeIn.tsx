@@ -1,4 +1,4 @@
-import React, { cloneElement, FC, ReactElement } from "react";
+import { cloneElement, FC, ReactElement } from "react";
 
 import { useFadeIn, TransitionStyle } from "../../nomad-hooks";
 
@@ -12,14 +12,10 @@ const UseFadeIn: FC<Props> = ({ children, transitionStyle }) => {
     const HTMLEl = useFadeIn(transitionStyle);
 
     return (
-        <>
-            {
-                cloneElement(children as ReactElement<any>, {
-                    ref: HTMLEl,
-                    style: { opacity: '0' }
-                })
-            }
-        </>
+        cloneElement(children as ReactElement<any>, {
+            ref: HTMLEl,
+            style: { opacity: '0' }
+        })
     )
 }
 
