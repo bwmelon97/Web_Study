@@ -23,8 +23,16 @@ function useScrollY () {
         }
     }, [])
 
+    /* 전체 Body의 높이 값 */
+    const [scrollHeight, setScrollHeight] = useState<number>(document.body.scrollHeight);
+    // eslint-disable-next-line
+    useEffect(() => {
+        console.log('[useScrollY] render !')
+        setScrollHeight(document.body.scrollHeight);
+    })
+
     return {
-        scrollY, innerHeight
+        scrollY, innerHeight, scrollHeight
     }
 }
 
