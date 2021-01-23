@@ -16,13 +16,14 @@ const ContentBox = styled.div`
 
 function UseScrollYExample () {
 
-    const { scrollY } = useScrollY();
+    const { scrollY, innerHeight } = useScrollY();
 
     return (
         <Wrapper>
             <ContentBox>
                 <h1>Hello ?</h1>
                 <p> scroll_Y : {scrollY} </p>
+                <p> innerHeight : {innerHeight} </p>
             </ContentBox>
         </Wrapper>
     )
