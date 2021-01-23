@@ -1,13 +1,13 @@
 import React from "react";
 
-import { UseNetworkExample } from "./nomad-components";
+import { UseScrollYExample } from "./nomad-components";
 
 
 function App() {
 
     return (
         <>
-            <UseNetworkExample />
+            <UseScrollYExample />
         </>
     )
 }
