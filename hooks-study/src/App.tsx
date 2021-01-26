@@ -1,13 +1,13 @@
 import React from "react";
 
-import { UseScrollYExample } from "./nomad-components";
+import { UseFullScreenExample } from "./nomad-components";
 
 
 function App() {
 
     return (
         <>
-            <UseScrollYExample />
+            <UseFullScreenExample />
         </>
     )
 }
