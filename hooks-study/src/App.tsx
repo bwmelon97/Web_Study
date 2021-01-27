@@ -1,13 +1,13 @@
 import React from "react";
 
-import { UseFullScreenExample } from "./nomad-components";
+import { UseAxiosExample } from "./nomad-components";
 
 
 function App() {
 
     return (
         <>
-            <UseFullScreenExample />
+            <UseAxiosExample />
         </>
     )
 }
