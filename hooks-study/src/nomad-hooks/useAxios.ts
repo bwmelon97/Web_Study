@@ -1,18 +1,14 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState, useRef } from "react";
+import axios, { AxiosRequestConfig } from "axios";
 
 
-type AxiosOptions = {
-    url: string;
-}
-
-type State = {
-    loading: boolean,
-    data: Object | null,
-    error: Error | null
-}
-
-function useAxios ( { url }: AxiosOptions ) {
+function useAxios<T extends object> ( config: AxiosRequestConfig ) {
+    
+    type State = {
+        loading: boolean,
+        data: T | null,
+        error: Error | null
+    }
 
     const [state, setState] = useState<State>({
         loading: true,
@@ -20,26 +16,37 @@ function useAxios ( { url }: AxiosOptions ) {
         error: null
     });
 
+    const configRef = useRef(config);
+
     useEffect(() => {
-        axios.get( url )
-        .then((res) => {
-            setState( s => {
-                return {
-                    ...s,
-                    loading: false,
-                    data: res.data
-                }
-            })
-        })
-        .catch((error) => {
-            setState( s => {
-                return {
-                    ...s,
-                    loading: false,
-                    error
-                }
-            })
-        })
+        const { method } = configRef.current;
+
+        switch ( method ) {
+            case 'post': case 'POST':
+                axios(configRef.current);
+                break;
+                
+            case 'GET': case 'get': default:
+                axios(configRef.current)
+                .then((res) => {
+                    setState( s => {
+                        return {
+                            ...s,
+                            loading: false,
+                            data: res.data
+                        }
+                    })
+                })
+                .catch((error) => {
+                    setState( s => {
+                        return {
+                            ...s,
+                            loading: false,
+                            error
+                        }
+                    })
+                })
+        }
     }, [])
 
     return state;

@@ -1,17 +1,19 @@
 import React, {  } from 'react';
-import { useAxios } from '../nomad-hooks';
+import { useAxios, useNetwork } from '../nomad-hooks';
 
 
 function UseAxiosExample () {
 
-    const { data, loading } = useAxios({ url: 'https://aws.random.cat/meow'});
-
-    console.log(data)
+    type Meow = { file: string }
+    const { data, loading, error } = useAxios<Meow>({ url: 'https://aws.random.cat/meow'});
+    const isOnline = useNetwork();
 
     return (
         <div>
-            <h1> {data && data} </h1>
+            <h1> {data && data.file} </h1>
             <h2> {loading && 'Loading' } </h2>
+            <h2> {error && error.message} </h2>
+            <h2> {!isOnline && 'Offline'} </h2>
         </div>
     )
 }
