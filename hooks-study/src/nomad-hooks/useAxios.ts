@@ -10,14 +10,19 @@ function useAxios<T extends object> ( config: AxiosRequestConfig ) {
         error: Error | null
     }
 
-    const [state, setState] = useState<State>({
+    const initialState: State = {
         loading: true,
         data: null,
-        error: null
-    });
+        error: null,
+    }
 
+    const [state, setState] = useState<State>(initialState);
+
+    const [fetchToken, setFetchToken] = useState<number>(0)
+    const reFetch = () => setFetchToken(t => t + 1);
+
+    const initialStateRef = useRef(initialState);
     const configRef = useRef(config);
-
     useEffect(() => {
         const { method } = configRef.current;
 
@@ -27,6 +32,8 @@ function useAxios<T extends object> ( config: AxiosRequestConfig ) {
                 break;
                 
             case 'GET': case 'get': default:
+                setState( {...initialStateRef.current} )    // 필요할까 ?
+
                 axios(configRef.current)
                 .then((res) => {
                     setState( s => {
@@ -47,9 +54,9 @@ function useAxios<T extends object> ( config: AxiosRequestConfig ) {
                     })
                 })
         }
-    }, [])
+    }, [fetchToken])
 
-    return state;
+    return { ...state, reFetch };
 }
 
 export default useAxios;
