@@ -1,0 +1,18 @@
+{
+  "name": "graphql-api",
+  "version": "1.0.0",
+  "description": "Study Graphql by making Movie API",
+  "main": "index.ts",
+  "repository": "https://github.com/bwmelon97/Study_React",
+  "author": "Park Soogeun <bwmelon97@naver.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "graphql-yoga": "^1.18.3",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  },
+  "scripts": {
+    "start": "nodemon"
+  }
+}
