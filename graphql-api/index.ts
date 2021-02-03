@@ -7,4 +7,4 @@ const sever = new GraphQLServer({
     resolvers
 });
 
-sever.start({cors: {origin: '*', credentials: true}}, () => console.log('GraphQL Server Start !!'));
+sever.start(() => console.log('GraphQL Server Start !!'));
