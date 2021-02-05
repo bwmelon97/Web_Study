@@ -6,6 +6,6 @@ type Person {
 }
 
 type Query {
-    people: Person[]!
+    people: [Person]!
     person(id: Int!): Person
 }

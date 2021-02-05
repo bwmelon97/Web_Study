@@ -3,7 +3,7 @@ import resolvers from "./graphql/resolvers";
 
 
 const sever = new GraphQLServer({
-    typeDefs: './graphql/schema.graphql',
+    typeDefs: 'graphql/schema.graphql',
     resolvers
 });
 
