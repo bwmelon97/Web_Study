@@ -1,6 +1,6 @@
 import { 
     getMovies, getMovieByID,
-    addMovie
+    addMovie, deleteMovie
 } from "./db";
 
 const resolvers = {
@@ -9,7 +9,8 @@ const resolvers = {
         movie: (_, { id }) => getMovieByID(id)
     },
     Mutation: {
-        addMovie: (_, { name, score }) => addMovie(name, score)
+        addMovie: (_, { name, score }) => addMovie(name, score),
+        deleteMovie: (_, { id }) => deleteMovie(id)
     }
 }
 

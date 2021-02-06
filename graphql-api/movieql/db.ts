@@ -6,7 +6,7 @@ type Movie = {
 
 let curID = 7;
 
-const movies: Movie[] = [
+let movies: Movie[] = [
     {  
         id: 1,
         name: '불한당',
@@ -41,7 +41,7 @@ const movies: Movie[] = [
 
 export const getMovies = () => movies;
 
-export const getMovieByID = (id: number): Movie => {
+export const getMovieByID = (id: number): Movie | undefined => {
     return movies.filter(movie => movie.id === id)[0];
 }
 
@@ -52,4 +52,15 @@ export const addMovie = (name: string, score: number) => {
     }
     movies.push(newMovie);
     return newMovie;
+}
+
+export const deleteMovie = (id: number): boolean => {
+    const cleanedMovies = movies.filter(movie => movie.id !== id);
+    if ( cleanedMovies.length < movies.length ) {
+        movies = cleanedMovies;
+        return true
+    }
+    else {
+        return false
+    }
 }
