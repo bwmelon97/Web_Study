@@ -4,6 +4,8 @@ type Movie = {
     score: number;
 }
 
+let curID = 7;
+
 const movies: Movie[] = [
     {  
         id: 1,
@@ -41,4 +43,13 @@ export const getMovies = () => movies;
 
 export const getMovieByID = (id: number): Movie => {
     return movies.filter(movie => movie.id === id)[0];
+}
+
+export const addMovie = (name: string, score: number) => {
+    const newMovie: Movie = {
+        id: curID++,
+        name, score
+    }
+    movies.push(newMovie);
+    return newMovie;
 }
