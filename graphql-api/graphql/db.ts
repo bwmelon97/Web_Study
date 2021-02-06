@@ -1,7 +1,7 @@
 type Person = {
     name: string;
     age: number;
-    gender: 'male' | 'female' | 'other'
+    gender: 'MALE' | 'FEMALE' | 'OTHER'
 }
 
 type PersonWithID = Person & {
@@ -11,7 +11,7 @@ type PersonWithID = Person & {
 const soogeun: Person = {
     name: 'Park Soogeun',
     age: 25,
-    gender: 'male'
+    gender: 'MALE'
 }
 
 const room9: Person[] = [
@@ -19,32 +19,32 @@ const room9: Person[] = [
     {
         name: '김태형',
         age: 24,
-        gender: 'male'
+        gender: 'MALE'
     },
     {
         name: '신현승',
         age: 22,
-        gender: 'male'
+        gender: 'MALE'
     },
     {
         name: '김성모',
         age: 22,
-        gender: 'male'
+        gender: 'MALE'
     },
     {
         name: '김지성',
         age: 22,
-        gender: 'male'
+        gender: 'MALE'
     },
     {
         name: '김지우',
         age: 22,
-        gender: 'male'
+        gender: 'MALE'
     },
     {
         name: '현승엽',
         age: 22,
-        gender: 'male'
+        gender: 'MALE'
     },
 ]
 

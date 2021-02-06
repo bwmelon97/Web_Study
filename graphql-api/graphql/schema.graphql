@@ -1,8 +1,14 @@
+enum Gender {
+    MALE
+    FEMALE
+    OTHER
+}
+
 type Person {
     id: Int!
     name: String!
     age: Int!
-    gender: String!
+    gender: Gender!
 }
 
 type Query {
