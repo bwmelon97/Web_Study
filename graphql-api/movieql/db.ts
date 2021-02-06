@@ -1,3 +1,4 @@
+/* Data Type & Datas */
 type Movie = {
     id: number;
     name: string;
@@ -39,12 +40,14 @@ let movies: Movie[] = [
     },
 ]
 
+/* Query Funcs */
 export const getMovies = () => movies;
 
 export const getMovieByID = (id: number): Movie | undefined => {
     return movies.filter(movie => movie.id === id)[0];
 }
 
+/* Mutation Funcs */
 export const addMovie = (name: string, score: number) => {
     const newMovie: Movie = {
         id: curID++,
