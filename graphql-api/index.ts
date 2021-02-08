@@ -1,9 +1,8 @@
 import { GraphQLServer } from 'graphql-yoga';
-import resolvers from "./movieql/resolvers";
-
+import resolvers from "./movieql-with-rest-api/resolvers";
 
 const sever = new GraphQLServer({
-    typeDefs: 'movieql/schema.graphql',
+    typeDefs: 'movieql-with-rest-api/schema.graphql',
     resolvers
 });
 
