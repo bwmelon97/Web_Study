@@ -63,11 +63,15 @@ export const Container = styled.div`
         `;
 
             export const MovieLink = styled(Link)<{url: string}>`
+                margin: 12px 0;
                 width: 18%;
                 padding-top: 25%;
+
                 background-image: url(${props => props.url});
                 background-repeat: no-repeat;
                 background-size: cover;
                 background-position: center;
-                margin: 12px 0;
+            
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+                border-radius: 7px;
             `;
