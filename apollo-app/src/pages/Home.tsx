@@ -1,6 +1,9 @@
 import React from "react";
 import { gql, useQuery } from '@apollo/client';
-import { Link } from "react-router-dom";
+
+import { Home_Movie } from "../types";
+import HomeComponent from "../components/Home";
+
 
 const GET_MOVIES = gql`
     {
@@ -11,26 +14,13 @@ const GET_MOVIES = gql`
     }
 `;
 
-type Movie = {
-    id: number;
-    medium_cover_image: string;
-}
-
 function Home () {
 
-    const { loading, error, data } = useQuery(GET_MOVIES);
+    const { loading, error, data } = useQuery<{movies: Home_Movie[]}> (GET_MOVIES);
 
-    if (loading) { return <h1>loading...</h1> }
-    if (error) { return <h1>{error}</h1> }
-
+    if ( error ) { return <h1>{error.message}</h1> }
     return (
-        data.movies.map( (m: Movie, idx: number) => {
-            return (
-                <Link to={`/detail/${m.id}`} >
-                    <img src={m.medium_cover_image} alt='Movie Cover' key={idx} />
-                </Link>
-            )
-        })
+        <HomeComponent loading={loading} data={data} />
     )
 }
 
