@@ -13,8 +13,16 @@ type Props = {
 
 function DetailComponent ({loading, data}: Props) {
 
-    if(loading) return <div> Loading </div>
-    if(!data) return <div> no data </div>
+    return(
+        <S.Container>
+            { loading ? <S.ErrorMessage> Loading... </S.ErrorMessage> :
+              !data ? <S.ErrorMessage> No data </S.ErrorMessage> :
+              <DetailContent movie={data.movie} /> }            
+        </S.Container>
+    )
+}
+
+function DetailContent ({movie}: {movie: Detail_Movie}) {
 
     const {
         title,
@@ -22,20 +30,22 @@ function DetailComponent ({loading, data}: Props) {
         medium_cover_image,
         genres,
         description_intro
-    } = data.movie;
+    } = movie;
 
-    return(
+    return (
+        <S.ContentContainer>
+            <S.MovieContainer>
+                <S.MovieInfoBox>
+                    <S.MovieTitle> {title} </S.MovieTitle>
+                    <S.MovieRating> Rating : {rating} </S.MovieRating>
+                    { genres.map((g: string, idx: number) => <span key={idx} > {g} </span> ) }
+                    <p> {description_intro} </p>
+                </S.MovieInfoBox>
+                <S.PosterImage url={medium_cover_image} />
+            </S.MovieContainer>
 
-        <div>
-            <h1> {title} </h1>
-            <h3> {rating} </h3>
-            <img src={medium_cover_image} alt='Movie Cover' />
-            { genres.map((g: string, idx: number) => <span key={idx} > {g} </span> ) }
-            <p> {description_intro} </p>
-        </div>
+        </S.ContentContainer>
     )
 }
-
-
 
 export default DetailComponent;
