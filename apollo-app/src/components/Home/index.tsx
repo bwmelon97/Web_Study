@@ -13,6 +13,8 @@ type Props = {
 
 function Home ({loading, data}: Props) {
 
+    console.log(data);
+
     return (
         <S.Container>
             <S.Header>
@@ -24,7 +26,10 @@ function Home ({loading, data}: Props) {
                  !data ? <S.Message> No data </S.Message> :
                     <S.MovieGrid>
                         { data.movies.map( (m, idx: number) => 
-                            <S.MovieLink to={`/detail/${m.id}`} url={m.medium_cover_image} />                
+                            <S.MovieBlock>
+                                <S.MovieLink to={`/detail/${m.id}`} url={m.medium_cover_image} />
+                                <button> { m.isLiked ? 'Unlike' : 'Like' } </button> 
+                            </S.MovieBlock>
                         ) }
                     </S.MovieGrid>
                 }

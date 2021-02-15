@@ -55,17 +55,26 @@ export const Container = styled.div`
 
         export const MovieGrid = styled.div`
             margin-top: -5vh;
-            width: 80%;
+            width: 80vw;
 
             display: flex;
             flex-flow: row wrap;
             justify-content: space-evenly;
         `;
 
-            export const MovieLink = styled(Link)<{url: string}>`
+            export const MovieBlock = styled.div`
                 margin: 12px 0;
-                width: 18%;
-                padding-top: 25%;
+                width: 14vw;
+                padding: 0 1vw;
+
+                display: flex;
+                flex-flow: column nowrap;
+            `;
+
+            export const MovieLink = styled(Link)<{url: string}>`
+                width: 100%;
+                padding-top: 150%;
+                margin-bottom: 8px;
 
                 background-image: url(${props => props.url});
                 background-repeat: no-repeat;

@@ -9,7 +9,8 @@ const GET_MOVIES = gql`
     {
         movies(limit: 10, minimum_rating: 8, page: 2) {
             id,
-            medium_cover_image
+            medium_cover_image,
+            isLiked @client
         }
     }
 `;
