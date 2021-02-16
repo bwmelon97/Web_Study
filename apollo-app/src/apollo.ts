@@ -1,14 +1,12 @@
 import { ApolloClient, InMemoryCache, makeVar } from "@apollo/client";
 
 
-const isLiked = makeVar(false);
-
 const cache = new InMemoryCache({
     typePolicies: {
         Movie: {
             fields: {
                 isLiked: {
-                    read: () => isLiked()
+                    read: () => false
                 }
             }
         }
