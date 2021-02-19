@@ -1,24 +1,13 @@
-import { ApolloClient, InMemoryCache, makeVar } from "@apollo/client";
-
-
-const isLiked = makeVar(false);
-
-const cache = new InMemoryCache({
-    typePolicies: {
-        Movie: {
-            fields: {
-                isLiked: {
-                    read: () => isLiked()
-                }
-            }
-        }
-    }
-})
-
+import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
     uri: 'https://1nltu.sse.codesandbox.io/',
-    cache
+    cache: new InMemoryCache(),
+    resolvers: {
+        Movie: {
+            isLiked: () => false
+        }
+    }
 })
 
 export default client;
