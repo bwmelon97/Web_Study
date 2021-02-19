@@ -28,7 +28,6 @@ function Home ({loading, data}: Props) {
                         { data.movies.map( (m, idx: number) => 
                             <S.MovieBlock>
                                 <S.MovieLink to={`/detail/${m.id}`} url={m.medium_cover_image} />
-                                <button> { m.isLiked ? 'Unlike' : 'Like' } </button> 
                             </S.MovieBlock>
                         ) }
                     </S.MovieGrid>
