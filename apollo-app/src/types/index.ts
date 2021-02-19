@@ -1,16 +1,13 @@
-export type DefaultMovie = {
+export type Home_Movie = {
     id: number;
-    isLiked: boolean;
     medium_cover_image: string;
+    isLiked: boolean;
 }
 
-export type Home_Movie = DefaultMovie & {
-
-}
-
-export type Detail_Movie = DefaultMovie & {
+export type Detail_Movie = {
     title: string;
     rating: number;
     genres: string[];
     description_intro: string;
-}
+    medium_cover_image: string;
+ }

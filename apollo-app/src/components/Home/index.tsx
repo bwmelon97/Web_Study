@@ -1,18 +1,19 @@
 import React from "react";
 
 import * as S from "./Home.style";
-import { DefaultMovie } from "../../types";
-import { toggleMovieLike } from "../../apollo";
+import { Home_Movie } from "../../types";
 
 
 type Props = {
     loading: boolean;
-    moviesContainIsLiked: DefaultMovie[]
+    data: {
+        movies: Home_Movie[]
+    } | undefined;
 }
 
-function Home ({loading, moviesContainIsLiked}: Props) {
+function Home ({loading, data}: Props) {
 
-    console.log(moviesContainIsLiked);
+    console.log(data);
 
     return (
         <S.Container>
@@ -22,12 +23,12 @@ function Home ({loading, moviesContainIsLiked}: Props) {
             </S.Header>
             <S.Body>
                 {loading ? <S.Message> Loading... </S.Message> :
-                //  !moviesContainIsLiked ? <S.Message> No data </S.Message> :
+                 !data ? <S.Message> No data </S.Message> :
                     <S.MovieGrid>
-                        { moviesContainIsLiked.map( (m, idx: number) => 
-                            <S.MovieBlock key={idx} >
+                        { data.movies.map( (m, idx: number) => 
+                            <S.MovieBlock>
                                 <S.MovieLink to={`/detail/${m.id}`} url={m.medium_cover_image} />
-                                <button onClick={() => toggleMovieLike(m.id) } > { m.isLiked ? 'Unlike' : 'Like' } </button> 
+                                <button> { m.isLiked ? 'Unlike' : 'Like' } </button> 
                             </S.MovieBlock>
                         ) }
                     </S.MovieGrid>
