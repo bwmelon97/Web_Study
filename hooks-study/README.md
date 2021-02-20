@@ -49,7 +49,7 @@ Class Component의 모든 기능을 Functional Component가 수행할 수 있게
 
         ​	state, props 이외의 변수는 제대로 작동 안한다. DOM Element의 속성값이 변할 때마다 실행하는 방법을 아직 못 찾음 ㅠㅠ
 
-  3) 첫 렌더링 시에만 실행 (=componentDidMount)
+  3) 첫 렌더링 후 1회만 실행 (=componentDidMount)
 
   ```typescript
   function UseEffectExample () {
@@ -78,10 +78,48 @@ Class Component의 모든 기능을 Functional Component가 수행할 수 있게
 
 .
 
-### 성능 개선을 돕는 Memoization (useMemo, useCallback)
+### [React의 렌더링 성능 최적화를 위한 Hooks (useMemo, useCallback)](https://www.notion.so/Memoization-Hooks-useMemo-useCallback-c436ddcffe124921b23279835eb6c1a6)
+
+> **Memoization** : 동일한 계산을 반복해야 할 때, 이전에 계산한 값을 메모리에 저장함으로써 동일한 계산의 반복 수행을 제거하여 프로그램 실행 속도를 빠르게 하는 기술
+
+* useMemo
+    ```typescript
+    const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+    ```
+
+    **메모이제이션한 값**을 반환한다.
+
+    첫 번째 인자는 create 함수. 특정한 값을 반환하는 함수이다.
+
+    두 번째 인자는 dependency list. 해당 배열에 들어간 요소가 바뀔 때만 create 함수를 실행한다.
+
+    `useMemo`에 인자로 들어가는 create 함수는 렌더링 시에 실행되는 함수이다.  렌더링 이후에 실행되어야 하는 기능 (side effects)는 `useEffect`에서 사용해야 한다.
+
+* useCallback
+    ```typescript
+    const memoizedCallback = useCallback (
+        () => { doSomething(a, b); },
+        [a, b],
+    );
+    ```
+
+    **메모이제이션 된 함수**를 반환한다.
+
+    javascript에서 함수는 `Function` 객체이다. 따라서 callback 함수들은 렌더링 될 때마다 새로운 인스턴스를 생성하고, 이를 넘겨받는 컴포넌트는 같은 기능의 함수일지라도 다른 것으로 인식한다.
+
+    그렇기에 `React.memo()` 등과 같은 최적화를 한 자식 컴포넌트에게 함수 props를 넘겨줄 때는 `useCallback`을 통해 성능을 향상시킬 수 있다.
+
+### Reference
+* [이제는 사용해보자 useMemo, useCallback - 이화랑님 포스팅글](https://leehwarang.github.io/2020/05/02/useMemo&useCallback.html)
+* [React.memo() 현명하게 사용하기 번역문서](https://ui.toast.com/weekly-pick/ko_20190731)
+* [useMemo, useCallback 관련 리액트 공식문서](https://ko.reactjs.org/docs/hooks-reference.html#usememo)
+
+.
 
 ### Aditional Hooks (useReducer, useRef, useImparativeHandle, useLayoutEffect)
 
+
+.
 
 ## 2. 실전형 Custom Hooks 
 출처: [Nomad Coders 실전형 React Hooks 10개](https://nomadcoders.co/react-hooks-introduction)
