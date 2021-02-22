@@ -69,12 +69,11 @@ Class Component의 모든 기능을 Functional Component가 수행할 수 있게
   4) Unmount 될 때 실행 (CleanUp)
 
 
-
-### Reference
-* [setState 관련 이화랑님 블로그 포스팅](https://leehwarang.github.io/2020/07/28/setState.html)
-* [setState 관련 번역 문서](https://usecode.pw/functional-set-state-is-the-future-of-react/)
-* [useEffect 관련 React 공식 문서](https://ko.reactjs.org/docs/hooks-effect.html)
-* [useEffect 관련 gist 문서](https://gist.github.com/ninanung/0ea87bc3d14ed8b1f9e7488561a4b910)
+  ### Reference
+  * [setState 관련 이화랑님 블로그 포스팅](https://leehwarang.github.io/2020/07/28/setState.html)
+  * [setState 관련 번역 문서](https://usecode.pw/functional-set-state-is-the-future-of-react/)
+  * [useEffect 관련 React 공식 문서](https://ko.reactjs.org/docs/hooks-effect.html)
+  * [useEffect 관련 gist 문서](https://gist.github.com/ninanung/0ea87bc3d14ed8b1f9e7488561a4b910)
 
 .
 
@@ -109,10 +108,10 @@ Class Component의 모든 기능을 Functional Component가 수행할 수 있게
 
     그렇기에 `React.memo()` 등과 같은 최적화를 한 자식 컴포넌트에게 함수 props를 넘겨줄 때는 `useCallback`을 통해 성능을 향상시킬 수 있다.
 
-### Reference
-* [이제는 사용해보자 useMemo, useCallback - 이화랑님 포스팅글](https://leehwarang.github.io/2020/05/02/useMemo&useCallback.html)
-* [React.memo() 현명하게 사용하기 번역문서](https://ui.toast.com/weekly-pick/ko_20190731)
-* [useMemo, useCallback 관련 리액트 공식문서](https://ko.reactjs.org/docs/hooks-reference.html#usememo)
+  ### Reference
+  * [이제는 사용해보자 useMemo, useCallback - 이화랑님 포스팅글](https://leehwarang.github.io/2020/05/02/useMemo&useCallback.html)
+  * [React.memo() 현명하게 사용하기 번역문서](https://ui.toast.com/weekly-pick/ko_20190731)
+  * [useMemo, useCallback 관련 리액트 공식문서](https://ko.reactjs.org/docs/hooks-reference.html#usememo)
 
 .
 
@@ -153,6 +152,10 @@ Class Component의 모든 기능을 Functional Component가 수행할 수 있게
     }, [])
   }
   ```
+
+  ### Reference
+  * [useRef 자세히 알아보기](https://krpeppermint100.medium.com/ts-useref-%EC%9E%90%EC%84%B8%ED%9E%88-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0-typescript-uselayouteffect-c9f1cf02ca5a)  
+  * [Object & array dependencies in the React useEffect Hook](https://www.benmvp.com/blog/object-array-dependencies-react-useEffect-hook/)
 
 .
 
