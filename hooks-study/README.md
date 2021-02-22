@@ -117,7 +117,42 @@ Class Component의 모든 기능을 Functional Component가 수행할 수 있게
 .
 
 ### Aditional Hooks (useReducer, useRef, useImparativeHandle, useLayoutEffect)
+* useRef
+  ```typescript
+  const refCount = useRef<number>(0);
+  const InputEl = useRef<HTMLInputElement>(null);
+  const configRef = useRef(config);   // config는 객체 데이터
+  ```
+  Use Refference Value. 즉, 객체를 사용하겠다는 hook이다. `useRef`가 반환하는 객체는 컴포넌트의 전 생애주기를 통해 유지된다. 해당 객체의 `current` 프로퍼티를 통해서 데이터에 접근할 수 있다.
 
+  `useRef`는 `initialValue`를 인자로 필요로 하고, Generics를 이용해서 `current` 데이터의 타입을 설정할 수 있다.
+
+  `useRef`는 State나 Props 변경에 의한 렌더링 시 초기화시키고 싶지 않은 변수, 그러나 해당 변수의 변화가 렌더링을 유도하지 않길 바라는 변수에 사용한다. 대표적인 사용처는 1) HTML DOM에 직접 접근하여 Element를 변수로 저장할 때와 2) `useEffect` 내부에 객체를 전달할 때 사용한다.
+
+  ex1) HTML DOM에 직접 접근하여 Element를 변수로 저장
+  ```typescript
+  const InputEl = useRef<HTMLInputElement>(null);
+  <input type='input' ref={InputEl} />
+
+  /* 사용하기 */
+  inputEl.current.?focus()  // 렌더링 이전 null일 경우에는 실행되지 않게 함.
+                            // (Optional Chaining)
+  ```
+  ex2) `useEffect` 내부에 객체를 전달
+  ```typescript
+  function useAxios ( config: AxiosRequestConfig ) {
+    const configRef = useRef(config);
+    useEffect(() => {
+      const { method } = configRef.current;
+      switch ( method ) {
+        case 'post': case 'POST':
+          axios(configRef.current);
+          break;
+        ...
+      }
+    }, [])
+  }
+  ```
 
 .
 
