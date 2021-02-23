@@ -161,3 +161,21 @@ Class Component의 모든 기능을 Functional Component가 수행할 수 있게
 
 ## 2. 실전형 Custom Hooks 
 출처: [Nomad Coders 실전형 React Hooks 10개](https://nomadcoders.co/react-hooks-introduction)
+
+React hook는 Functional Component가 Class Component의 기능을 수행할 수 있게 하기 위해 설계되었지만, **기능 단위의 로직을 함수 형태로 저장하여 재사용 가능**하다는 특성으로 그 잠재력은 Class Component 대체를 넘어서 코드를 '함수형 프로그래밍' 적으로 설계할 수 있도록 했다.
+
+Nomad Coders의 클래스에서 소개된 웹 어플리케이션에서 자주 사용되는 12가지 기능을 각각 hook로 만들며 Typescript 환경에서 custom hook를 만드는 경험치를 쌓았다.
+
+* useInput
+* useTab
+* useTitle
+* useHover
+* useConfirm, usePreventLeave
+* useFadeIn
+* useNetwork
+* useScrollY
+* useFullScreen
+* useNotification
+* useAxios
+
+위에 있는 hook들은 npm 패키지로 배포했으며, 각각의 hook에 대한 설명과 인사이트는 [여기](https://www.notion.so/Nomad-Coder-Hooks-0b291ac9aed14f069c912e81ffcd6a12)서 확인할 수 있다.
