@@ -1,5 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Movie, MovieParams } from './entities/movies.entity';
+import { CreateMovieDto } from './dtos/create-movie.dto';
+import { UpdateMovieDto } from './dtos/update-movie.dto';
+import { Movie } from './entities/movies.entity';
 
 @Injectable()
 export class MoviesService {
@@ -11,7 +13,7 @@ export class MoviesService {
         return this.movies;
     }
 
-    getOneByID(movieId: string): Movie {
+    getOneByID(movieId: number): Movie {
         const movie = this.movies.find(m => m.id === +movieId)
         if (!movie ) {
             throw new NotFoundException(`Movie with ID ${movieId} doesn't exist...`)
@@ -19,8 +21,9 @@ export class MoviesService {
         return movie;    
     }
 
-    createMovie({title, year, genreStr}: MovieParams): Movie {
-        const genres = genreStr.split(', ');
+    createMovie({title, year, genres}: CreateMovieDto): Movie {
+        if (typeof(genres) === 'string') genres = this.strToArray(genres);
+        
         const newMovie = {
             id: this.curId++,
             title, year, genres
@@ -29,17 +32,20 @@ export class MoviesService {
         return newMovie;
     }
 
-    deleteMovie(movieId: string) {
+    deleteMovie(movieId: number) {
         this.getOneByID(movieId);
-        this.movies = this.movies.filter(m => m.id !== +movieId)
+        this.movies = this.movies.filter(m => m.id !== movieId)
     }
 
-    updateMovie(movieId: string, {title, year, genreStr}: MovieParams): Movie {
-        const { id } = this.getOneByID(movieId);
-        const genres = genreStr.split(', ');
+    updateMovie(movieId: number, {title, year, genres}: UpdateMovieDto): Movie {
+        const originalMovie = this.getOneByID(movieId);
+        if (typeof(genres) === 'string') genres = this.strToArray(genres);
 
-        const updatedMovieIdx = this.movies.findIndex(m => m.id === +movieId);
-        const updatedMovie = { id, title, year, genres }
+        const updatedMovieIdx = this.movies.findIndex(m => m.id === movieId);
+        const updatedMovie = { ...originalMovie }
+        if(title) updatedMovie.title = title;
+        if(year) updatedMovie.year = year;
+        if(genres) updatedMovie.genres = genres;
         
         this.movies = [
             ...this.movies.slice(0, updatedMovieIdx),
@@ -50,4 +56,5 @@ export class MoviesService {
         return updatedMovie;
     }
 
+    strToArray = (str: string): string[] => str.split(', ');
 }

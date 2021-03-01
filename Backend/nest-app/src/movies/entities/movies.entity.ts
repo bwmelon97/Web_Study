@@ -4,9 +4,3 @@ export class Movie {
     year: number;
     genres: string[];
 }
-
-export type MovieParams = {
-    title: string;
-    year: number;
-    genreStr: string;
-}
