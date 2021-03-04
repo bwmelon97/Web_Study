@@ -35,7 +35,7 @@ local 환경이 아닌 클라우드 서버에서 Backend 어플리케이션을 �
 - -**p, --port** Internal HTTP server port [필수]
 - -**h, --host** Upstream server providing forwarding [기본: "https://localtunnel.me"]
 - -**s, --subdomain** Request this subdomain [옵션]
-- -**o, --open** Opens the tunnel URL in your browser**--print-requests** Print basic request info [옵션]
+- -**o, --open** Opens the tunnel URL in your browser [옵션]
 
 port 인자는 localhost의 어떤 port로 실행된 어플리케이션을 띄울 것인지.
 
