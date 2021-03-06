@@ -14,7 +14,7 @@ export class MoviesService {
     }
 
     getOneByID(movieId: number): Movie {
-        const movie = this.movies.find(m => m.id === +movieId)
+        const movie = this.movies.find(m => m.id === movieId)
         if (!movie ) {
             throw new NotFoundException(`Movie with ID ${movieId} doesn't exist...`)
         }
