@@ -21,6 +21,8 @@ $ yarn add styled-components & yarn add @types/styled-components
 
 ---
 ## Study Plan
+
+### FrontEnd
 * Redux
   - Typescript 환경에서 Redux 작업 시 필요한 세팅
   - 미들웨어
@@ -32,6 +34,13 @@ $ yarn add styled-components & yarn add @types/styled-components
   - Webpack
     - 모듈 import 시, src 경로 설정하기
 * 리액트의 성능을 끌어올리기 (Profiler)
+* StoryBoard
+
+### Backend
 * AWS 사용하기 (생활코딩 강의)
+* Serverless (FaaS) 
+  출처: https://velopert.com/3543
+
+### 종합
 * 호쏘공 프로젝트
 * Number-Eats 클론 코딩
