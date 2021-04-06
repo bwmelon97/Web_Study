@@ -6,5 +6,5 @@ const rootReducer = combineReducers({
 
 export default rootReducer;
 
-/* 루트 State의 타입입 */
+/* 루트 State의 타입 */
 export type RootState = ReturnType<typeof rootReducer>
