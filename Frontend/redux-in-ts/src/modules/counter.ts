@@ -4,15 +4,15 @@ const DECREASE = 'counter/DECREASE' as const;
 const SET_COUNTER = 'counter/SET_COUNTER' as const;
 
 /* Action Creaters */
-const increase = () => {
+export const increase = () => {
     return { type: INCREASE }
 }
 
-const decrease = () => {
+export const decrease = () => {
     return { type: DECREASE }
 }
 
-const setCounter = (num: number) => {
+export const setCounter = (num: number) => {
     return {
         type: SET_COUNTER, 
         payload: num
