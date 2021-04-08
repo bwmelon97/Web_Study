@@ -14,10 +14,12 @@ $ yarn add styled-components & yarn add @types/styled-components
 * Backend
   * GraphQL API
   * Nest App
+  * AWS Server
 * Frontend
   * Context API : React Context를 모듈화 시켜서 사용하는 방법에 대해 공부
   * Hooks Study : Functional Component를 100% 활용하기 위한 hook에 대한 탐구
   * Apollo App  : Apollo client를 이용해 React 앱에서 GraphQL 로직 사용하는 방법 공부
+  * Redux in TS
 
 ---
 ## Study Plan
@@ -43,4 +45,4 @@ $ yarn add styled-components & yarn add @types/styled-components
 
 ### 종합
 * 호쏘공 프로젝트
-* Number-Eats 클론 코딩
+* Nuber-Eats 클론 코딩
