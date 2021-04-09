@@ -1,30 +1,24 @@
+import { ActionType, createAction, createReducer } from 'typesafe-actions';
+
 /* Action Types */
-const INCREASE = 'counter/INCREASE' as const;
-const DECREASE = 'counter/DECREASE' as const;
-const SET_COUNTER = 'counter/SET_COUNTER' as const;
+const INCREASE = 'counter/INCREASE';
+const DECREASE = 'counter/DECREASE';
+const SET_COUNTER = 'counter/SET_COUNTER';
 
-/* Action Creaters */
-export const increase = () => {
-    return { type: INCREASE }
-}
+/** Action Creaters 
+ * createAction([Action Type])(): 해당 타입을 갖는 Empty Action Creator 생성
+ * createAction([Action Type])<[payload 타입]>(): payload 프로퍼티까지 갖는 Action Creator 생성    
+ */
+export const increase = createAction(INCREASE)();
+export const decrease = createAction(DECREASE)();
+export const setCounter = createAction(SET_COUNTER)<number>();
 
-export const decrease = () => {
-    return { type: DECREASE }
-}
-
-export const setCounter = (num: number) => {
-    return {
-        type: SET_COUNTER, 
-        payload: num
-    }
-}
-
-/* Type of Action Objects */
-type CounterAction = 
-    | ReturnType<typeof increase>
-    | ReturnType<typeof decrease> 
-    | ReturnType<typeof setCounter>
-
+/** Type of Action Objects 
+ * 모든 action creater를 담은 하나의 객체 actions를 만들고
+ * ActionType<typeof actions>를 해당 모듈의 ActionType으로 만든다.
+ */
+const actions = { increase, decrease, setCounter };
+type CounterAction = ActionType<typeof actions>;
 
 /* State Type */
 type CounterState = {
@@ -36,33 +30,22 @@ const initialState: CounterState = {
     count: 0
 }
 
-/* Reducer */
-function counter (
-    state: CounterState = initialState,
-    action: CounterAction
-): CounterState
-{
-    switch (action.type) {
-        case INCREASE:
-            return {
-                count: state.count + 1
-            }
+/** Reducer 
+ * Object Mapping Method
+ * 
+ * Method Chainning Method
+ */
+/* 1. Object Mapping Method */
+// const counter = createReducer<CounterState, CounterAction>(initialState, {
+//     [INCREASE]: state => ({ count: state.count + 1 }),
+//     [DECREASE]: state => ({ count: state.count - 1 }),
+//     [SET_COUNTER]: (state, action) => ({ count: action.payload })
+// })
 
-        case DECREASE:
-            return {
-                count: state.count - 1
-            }
-
-        case SET_COUNTER:
-            return {
-                count: action.payload
-            }
-
-        default: 
-            return {
-                ...state
-            }
-    }
-}
+/* 2. Method Chainning Method */
+const counter = createReducer<CounterState, CounterAction>(initialState)
+    .handleAction(increase, state => ({count: state.count + 1}))
+    .handleAction(decrease, state => ({count: state.count - 1}))
+    .handleAction(setCounter, (state, action) => ({count: action.payload}))
 
 export default counter;
