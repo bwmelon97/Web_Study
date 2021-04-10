@@ -6,8 +6,8 @@ const DECREASE = 'counter/DECREASE';
 const SET_COUNTER = 'counter/SET_COUNTER';
 
 /** Action Creaters 
- * createAction([Action Type])(): 해당 타입을 갖는 Empty Action Creator 생성
- * createAction([Action Type])<[payload 타입]>(): payload 프로퍼티까지 갖는 Action Creator 생성    
+ * createAction(액션타입)(): 해당 타입을 갖는 Empty Action Creator 생성
+ * createAction(액션타입)<payload 타입>(): payload 프로퍼티까지 갖는 Action Creator 생성    
  */
 export const increase = createAction(INCREASE)();
 export const decrease = createAction(DECREASE)();
@@ -31,21 +31,36 @@ const initialState: CounterState = {
 }
 
 /** Reducer 
- * Object Mapping Method
+ * 1. Object Mapping Method
+ * createReducer<모듈 State, 모듈 Action>(초기 State, {
+ *     [액션 타입1]: (state, action) => {
+ *         ... 함수 내용
+ *         return { 모듈 State }
+ *     },
+ *     [액션 타입2]: ... ,
+ *     ...
+ * })
  * 
- * Method Chainning Method
+ * 2. Method Chainning Method
+ * createReducer<모듈 State, 모듈 Action>(초기 State)
+ * .handleAction(액션 생성자, (state, action) => {
+ *     ... 함수 내용
+ *     return { 모듈 State }
+ * })
+ * .handleAction(...)
+ * ...
  */
 /* 1. Object Mapping Method */
-// const counter = createReducer<CounterState, CounterAction>(initialState, {
-//     [INCREASE]: state => ({ count: state.count + 1 }),
-//     [DECREASE]: state => ({ count: state.count - 1 }),
-//     [SET_COUNTER]: (state, action) => ({ count: action.payload })
-// })
+const counter = createReducer<CounterState, CounterAction>(initialState, {
+    [INCREASE]: state => ({ count: state.count + 1 }),
+    [DECREASE]: state => ({ count: state.count - 1 }),
+    [SET_COUNTER]: (state, action) => ({ count: action.payload })
+})
 
 /* 2. Method Chainning Method */
-const counter = createReducer<CounterState, CounterAction>(initialState)
-    .handleAction(increase, state => ({count: state.count + 1}))
-    .handleAction(decrease, state => ({count: state.count - 1}))
-    .handleAction(setCounter, (state, action) => ({count: action.payload}))
+// const counter = createReducer<CounterState, CounterAction>(initialState)
+//     .handleAction(increase, state => ({count: state.count + 1}))
+//     .handleAction(decrease, state => ({count: state.count - 1}))
+//     .handleAction(setCounter, (state, action) => ({count: action.payload}))
 
 export default counter;
