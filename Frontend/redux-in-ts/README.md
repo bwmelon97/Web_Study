@@ -16,6 +16,7 @@
 ## Study Notes
 
 ### TS 환경에서 redux 사용하기
+[Notion Link](https://www.notion.so/Redux-in-Typescript-5926c115a2454b18aaf446fe6ba75dc0)
 1. 설치해야 하는 패키지
 2. Start Using Redux
 3. Create Modules (actions & reducers)
