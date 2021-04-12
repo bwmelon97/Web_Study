@@ -2,7 +2,10 @@ import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { RootState } from "../modules";
-import { increase, decrease, setCounter } from "../modules/counter";
+import { 
+    // increase, decrease, 
+    increaseDelay, decreaseDelay, setCounter 
+} from "../modules/counter";
 
 
 function useCounter () {
@@ -11,8 +14,10 @@ function useCounter () {
     
     /* Dispatch Actions */
     const dispatch = useDispatch();
-    const onIncrease = useCallback(() => dispatch(increase()), [dispatch])
-    const onDecrease = useCallback(() => dispatch(decrease()), [dispatch])
+    // const onIncrease = useCallback(() => dispatch(increase()), [dispatch])
+    // const onDecrease = useCallback(() => dispatch(decrease()), [dispatch])
+    const onIncrease = useCallback(() => dispatch(increaseDelay()), [dispatch])
+    const onDecrease = useCallback(() => dispatch(decreaseDelay()), [dispatch])
     const onSetCounter = useCallback(
         (num: number) => dispatch(setCounter(num)), 
         [dispatch]

@@ -1,3 +1,4 @@
+import { Dispatch } from 'react';
 import { ActionType, createAction, createReducer } from 'typesafe-actions';
 
 /* Action Types */
@@ -5,13 +6,27 @@ const INCREASE = 'counter/INCREASE';
 const DECREASE = 'counter/DECREASE';
 const SET_COUNTER = 'counter/SET_COUNTER';
 
-/** Action Creaters 
+/** Action Creators 
  * createAction(액션타입)(): 해당 타입을 갖는 Empty Action Creator 생성
  * createAction(액션타입)<payload 타입>(): payload 프로퍼티까지 갖는 Action Creator 생성    
  */
 export const increase = createAction(INCREASE)();
 export const decrease = createAction(DECREASE)();
 export const setCounter = createAction(SET_COUNTER)<number>();
+
+/** Thunk Action Creator 
+ * Thunk Action Creator는 함수를 리턴하는 액션 생성자를 의미한다.
+ * Thunk 미들웨어: action이 function ? action(dispatch, getState) : next(action)
+ * 
+ * Thunk Action Creator가 반환하는 함수는 인자로 dispatch와 getState를 받고,
+ * 그 중 첫 번째 인자인 dispatch를 이용해서 다른 action을 dispatch 시키는 구조를 띈다.
+ */
+export const increaseDelay = () => (dispatch: Dispatch<CounterAction>) => {
+    setTimeout( () => dispatch(increase()), 1000 );
+}
+export const decreaseDelay = () => (dispatch: Dispatch<CounterAction>) => {
+    setTimeout( () => dispatch(decrease()), 1000 );
+}
 
 /** Type of Action Objects 
  * 모든 action creater를 담은 하나의 객체 actions를 만들고
