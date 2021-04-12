@@ -27,4 +27,6 @@
     - 컴포넌트에서 Hook 사용하기
 
 ## Reference
-- https://react.vlpt.us/using-typescript/
+- [Velopert님의 Mordern React - Redux in TS](https://react.vlpt.us/using-typescript/)
+- [Velopert님의 Mordern React - Redux Middleware](https://react.vlpt.us/redux-middleware/)
+- [Velopert님의 Mordern React - TS Redux Middleware](https://react.vlpt.us/using-typescript/06-ts-redux-middleware.html)
