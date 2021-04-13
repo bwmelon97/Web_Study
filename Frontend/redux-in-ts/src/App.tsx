@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { Counter } from "./components";
+import { Counter, PostList } from "./components";
 
 
 function App() {
   return (
     <>
       <Counter />
+      <PostList />
     </>
   );
 }
