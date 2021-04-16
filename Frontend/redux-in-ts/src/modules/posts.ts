@@ -1,5 +1,5 @@
-import { Dispatch } from "react";
 import { Post, getPosts, getPost } from "../api/posts";
+import { createActionCreators, createPostsThunk } from "../lib/posts";
 
 /* Action Types */
 const GET_POSTS = 'posts/GET_POSTS' as const;
@@ -11,51 +11,21 @@ const GET_POST_SUCCESS = 'posts/GET_POST_SUCCESS' as const;
 const GET_POST_FAILURE = 'posts/GET_POST_FAILURE' as const;
 
 /* Action Creators */
-const getPostsAction = () => ({ type: GET_POSTS })
-const getPostsSuccessAction = (payload: Post[]) => (
-    { type: GET_POSTS_SUCCESS, payload }
-) 
-const getPostsFailureAction = (payload: Error) => (
-    { type: GET_POSTS_FAILURE, payload }
-) 
-
-const getPostAction = () => ({ type: GET_POST })
-const getPostSuccessAction = (payload: Post) => (
-    { type: GET_POST_SUCCESS, payload }
-) 
-const getPostFailureAction = (payload: Error) => (
-    { type: GET_POST_FAILURE, payload }
-) 
+const getPostActions = createActionCreators(GET_POST)
+const getPostsActions = createActionCreators(GET_POSTS)
 
 /* Thunk Functions */
-export const getPostsReq = () => async (dispatch: Dispatch<PostsAction>) => {
-    dispatch(getPostsAction());
-    try {
-        const posts = await getPosts();
-        dispatch(getPostsSuccessAction(posts))
-    } catch (error) {
-        dispatch(getPostFailureAction(error))
-    }
-}
-
-export const getPostReq = (id: number) => async (dispatch: Dispatch<PostsAction>) => {
-    dispatch(getPostAction());
-    try {
-        const post = await getPost(id);
-        dispatch(getPostSuccessAction(post))
-    } catch (error) {
-        dispatch(getPostFailureAction(error))
-    }
-}
+export const getPostReq = createPostsThunk( getPost, getPostActions );
+export const getPostsReq = createPostsThunk( getPosts, getPostsActions );
 
 /* ActionType */
-type PostsAction = 
-    | ReturnType<typeof getPostsAction> 
-    | ReturnType<typeof getPostsSuccessAction> 
-    | ReturnType<typeof getPostsFailureAction> 
-    | ReturnType<typeof getPostAction> 
-    | ReturnType<typeof getPostSuccessAction> 
-    | ReturnType<typeof getPostFailureAction>
+export type PostsAction = 
+    | ReturnType<typeof getPostActions.get>
+    | ReturnType<typeof getPostActions.success>
+    | ReturnType<typeof getPostActions.failure>
+    | ReturnType<typeof getPostsActions.get>
+    | ReturnType<typeof getPostsActions.success>
+    | ReturnType<typeof getPostsActions.failure>
 
 
 /* ************************************************** */
