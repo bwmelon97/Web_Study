@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from 'react-router-dom';
 
 import { usePosts } from "../hooks";
 
@@ -13,7 +14,7 @@ function PostList () {
         <div> 
         { 
             loading ? "loading..." :
-            data?.map( p => <ul>{p.title}</ul> )
+            data?.map( p => <ul><Link to={`/posts/${p.id}`} >{p.title}</Link></ul> )
         } 
         </div>
     )

@@ -1,14 +1,16 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-import { Counter, PostList } from "./components";
+import { Home, PostList, PostDetail } from "./components";
 
 
 function App() {
   return (
-    <>
-      <Counter />
-      <PostList />
-    </>
+    <Switch>
+      <Route exact path='/' > <Home /> </Route>
+      <Route exact path='/posts' > <PostList /> </Route>
+      <Route path='/posts/:id' > <PostDetail /> </Route>
+    </Switch>
   );
 }
 
