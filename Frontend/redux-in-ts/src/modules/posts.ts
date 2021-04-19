@@ -1,5 +1,5 @@
 import { Post, getPosts, getPost } from "../api/posts";
-import { createActionCreators, createPostsThunk } from "../lib/posts";
+import { createActionCreators, createPostsThunk, handleAction, reducerUtils } from "../lib/posts";
 
 /* Action Types */
 const GET_POSTS = 'posts/GET_POSTS' as const;
@@ -32,7 +32,7 @@ export type PostsAction =
 
 
 /* State Type */
-type PostsState = {
+export type PostsState = {
     posts: {
         loading: boolean;
         data: Post[] | null;
@@ -47,85 +47,23 @@ type PostsState = {
 
 /* Initial State */
 const initialState: PostsState = {
-    posts: {
-        loading: false,
-        data: null,
-        error: null,
-    },
-    post: {
-        loading: false,
-        data: null,
-        error: null
-    }
+    posts: reducerUtils.initialize<Post[]>(),
+    post: reducerUtils.initialize<Post>()
 }
 
 /* Reducer */
 const posts = (state: PostsState = initialState, action: PostsAction) => {
     switch (action.type) {
         case GET_POSTS:
-            return {
-                ...state,
-                posts: {
-                    loading: true,
-                    data: null,
-                    error: null
-                }
-            }
-
         case GET_POSTS_SUCCESS:
-            return {
-                ...state,
-                posts: {
-                    loading: false,
-                    data: action.payload,
-                    error: null
-                }
-            }
-
         case GET_POSTS_FAILURE:
-            return {
-                ...state,
-                posts: {
-                    loading: false,
-                    data: null,
-                    error: action.payload
-                }
-            }
-
+            return handleAction(GET_POSTS, 'posts')(state, action);
         case GET_POST:
-            return {
-                ...state,
-                post: {
-                    loading: true,
-                    data: null,
-                    error: null
-                }
-            }
-
         case GET_POST_SUCCESS:
-            return {
-                ...state,
-                post: {
-                    loading: false,
-                    data: action.payload,
-                    error: null
-                }
-            }
-
         case GET_POST_FAILURE:
-            return {
-                ...state,
-                post: {
-                    loading: false,
-                    data: null,
-                    error: action.payload
-                }
-            }
-        
+            return handleAction(GET_POST, 'post')(state, action);
         default: 
-            return {
-                ...state
-            }
+            return { ...state }
     }
 }
 
