@@ -52,12 +52,12 @@ const initialState: PostsState = {
 }
 
 /* Reducer */
-const posts = (state: PostsState = initialState, action: PostsAction) => {
+const posts = (state: PostsState = initialState, action: PostsAction): PostsState => {
     switch (action.type) {
         case GET_POSTS:
         case GET_POSTS_SUCCESS:
         case GET_POSTS_FAILURE:
-            return handleAction(GET_POSTS, 'posts')(state, action);
+            return handleAction(GET_POSTS, 'posts', true)(state, action);
         case GET_POST:
         case GET_POST_SUCCESS:
         case GET_POST_FAILURE:

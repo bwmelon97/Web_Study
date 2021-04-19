@@ -7,14 +7,16 @@ import { usePosts } from "../hooks";
 function PostList () {
 
     const { posts, getPosts } = usePosts();
-    const { loading, data } = posts;
+    const { loading, error, data } = posts;
     useEffect( getPosts, [getPosts] )
+
+    if ( loading && !data ) return <div>loading...</div>
+    if ( error ) return <div>에러입니다. {error.message}</div>
 
     return (
         <div> 
-        { 
-            loading ? "loading..." :
-            data?.map( p => <ul><Link to={`/posts/${p.id}`} >{p.title}</Link></ul> )
+        {
+            data?.map( (p, idx) => <ul key={idx} ><Link to={`/posts/${p.id}`} >{p.title}</Link></ul> )
         } 
         </div>
     )

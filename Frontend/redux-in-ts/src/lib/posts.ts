@@ -60,7 +60,8 @@ export const reducerUtils = {
 
 export const handleAction = (
     type: 'posts/GET_POST' | 'posts/GET_POSTS',
-    key: 'post' | 'posts'
+    key: 'post' | 'posts',
+    keepData: boolean = false
 ) => (
     state: PostsState, action: PostsAction
 ) => {
@@ -70,7 +71,7 @@ export const handleAction = (
         case type:
             return {
                 ...state,
-                [key]: reducerUtils.loading()
+                [key]: reducerUtils.loading( keepData ? state[key].data : null )
             }
         
         case SUCCESS:
