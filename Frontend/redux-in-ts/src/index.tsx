@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger' 
 import { BrowserRouter } from 'react-router-dom';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import './index.css';
 import App from './App';
@@ -12,7 +13,7 @@ import reportWebVitals from './reportWebVitals';
 import reducer from "./modules";
 
 
-const store = createStore(reducer, applyMiddleware(thunk, logger))
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk, logger)) )
 
 ReactDOM.render(
   <React.StrictMode>
