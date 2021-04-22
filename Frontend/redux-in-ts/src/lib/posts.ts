@@ -1,11 +1,11 @@
 import { Dispatch } from "react";
 
 import { Post } from "../api/posts";
-import { PostsAction, PostsState } from "../modules/posts";
+import { PostsAction, PostsState, GET_POST, GET_POSTS } from "../modules/posts";
 
 
 /* Action Creator를 생성하는 코드 */
-export const createActionCreators = (type: 'posts/GET_POST' | 'posts/GET_POSTS') => {
+export const createActionCreators = <T extends typeof GET_POST | typeof GET_POSTS> ( type: T ) => {
     const [SUCCESS, FAILURE] = [`${type}_SUCCESS`, `${type}_FAILURE`] as const;
 
     return {
@@ -59,8 +59,10 @@ export const reducerUtils = {
 }
 
 export const handleAction = (
-    type: 'posts/GET_POST' | 'posts/GET_POSTS',
-    key: 'post' | 'posts',
+    // type: typeof GET_POST | typeof GET_POSTS,
+    type: typeof GET_POSTS,
+    // key: 'post' | 'posts',
+    key: 'posts',
     keepData: boolean = false
 ) => (
     state: PostsState, action: PostsAction
