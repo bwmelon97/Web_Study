@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useParams, useHistory } from 'react-router';
 
 import { usePosts } from "../hooks";
 
@@ -11,11 +11,15 @@ function PostDetail () {
     useEffect(() => { getPost(+id) }, [getPost, id]);
     const { loading, data } = post;
 
+    const history = useHistory();
+    const goToHome = () => history.push('/posts');
+
     return (
         <div>
             {
                 loading && !data ? 'loading...' :
                 <div>
+                    <button onClick={goToHome} >홈으로 이동</button>
                     <h1> {data?.title} </h1>
                     <p> {data?.body} </p>
                 </div>
