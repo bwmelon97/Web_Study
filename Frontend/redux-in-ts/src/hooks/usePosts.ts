@@ -3,9 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../modules";
 import { getPostsReq, getPostReqById, clearPostAction } from "../modules/posts";
 
-function usePosts () {
+function usePosts (id?: number) {
     const posts = useSelector( (state: RootState) => state.posts.posts )
-    const post = useSelector( (state: RootState) => state.posts.post )
+    const post = useSelector( (state: RootState) => state.posts.post[id as number] ) || {
+        loading: false,
+        data: null,
+        error: null
+    }
 
     const dispatch = useDispatch();
     const getPosts = useCallback( () => { dispatch(getPostsReq()) }, [dispatch])

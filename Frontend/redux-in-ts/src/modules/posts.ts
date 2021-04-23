@@ -18,14 +18,17 @@ const CLEAN_POST = 'posts/CLEAN_POST' as const;
 const getPostActions = createActionCreators<typeof GET_POST>(GET_POST)
 const getPostsActions = createActionCreators<typeof GET_POSTS>(GET_POSTS)
 
-const getPostAction = ( payload: Post | undefined ) => ({ type: GET_POST, payload })
+const getPostAction = ( meta: {id: number} ) => ({ type: GET_POST, meta })
 
 const getPostSuccessAction = (
     payload: Post,
-    meta: { id: number, isInCache: boolean }
+    meta: { id: number }
 ) => ({ type: GET_POST_SUCCESS, payload, meta })
 
-const getPostFailureAction = ( payload: Error ) => ({ type: GET_POST_FAILURE, payload })
+const getPostFailureAction = ( 
+    payload: Error, 
+    meta: {id: number} 
+) => ({ type: GET_POST_FAILURE, payload, meta })
 
 export const clearPostAction = () => ({ type: CLEAN_POST })
 
@@ -33,17 +36,13 @@ export const clearPostAction = () => ({ type: CLEAN_POST })
 export const getPostReq = createPostsThunk( getPost, getPostActions );
 export const getPostsReq = createPostsThunk( getPosts, getPostsActions );
 
-export const getPostReqById = (id: number) => async ( dispatch: Dispatch<PostsAction>, getState: () => RootState ) => {
-    const { cache } = getState().posts.post;
-    const dataInCache = cache.find( p => p.id === id )
-    const isInCache = dataInCache !== undefined
-
-    dispatch( getPostAction(dataInCache?.data) );
+export const getPostReqById = (id: number) => async ( dispatch: Dispatch<PostsAction> ) => {
+    dispatch( getPostAction({id}) );
     try {
         const postData = await getPost(id);
-        dispatch( getPostSuccessAction(postData, {id, isInCache}) );
+        dispatch( getPostSuccessAction(postData, {id}) );
     } catch (error) {
-        dispatch( getPostFailureAction(error) );
+        dispatch( getPostFailureAction(error, {id}) );
     }
 }
 
@@ -72,20 +71,25 @@ export type PostsState = {
         error: Error | null;
     };
     post: {
-        loading: boolean;
-        data: Post | null;
-        error: Error | null;
-        cache: {
-            id: number;
-            data: Post;
-        }[]
+        // loading: boolean;
+        // data: Post | null;
+        // error: Error | null;
+        // cache: {
+        //     id: number;
+        //     data: Post;
+        // }[]
+        [id: number]: {
+            loading: boolean;
+            data: Post | null;
+            error: Error | null;
+        }
     };
 }
 
 /* Initial State */
 const initialState: PostsState = {
     posts: reducerUtils.initialize<Post[]>(),
-    post: { ...reducerUtils.initialize<Post>(), cache: [] }
+    post: {}
 }
 
 /* Reducer */
@@ -116,44 +120,47 @@ const posts = (state: PostsState = initialState, action: PostsAction): PostsStat
                 posts: reducerUtils.failure( action.payload )
             }
 
-        case CLEAN_POST:
+        // case CLEAN_POST:
+        //     return {
+        //         ...state,
+        //         post: {
+        //             ...reducerUtils.initialize<Post>(),
+        //             cache: state.post.cache
+        //         }
+        //     }
+
+        case GET_POST: {
+            const { meta: {id} } = action;
             return {
                 ...state,
                 post: {
-                    ...reducerUtils.initialize<Post>(),
-                    cache: state.post.cache
-                }
-            }
-
-        case GET_POST: 
-            return {
-                ...state,
-                post: {
-                    ...reducerUtils.loading<Post>(action.payload),
-                    cache: state.post.cache
-                }
-            }
-
-        case GET_POST_SUCCESS: {
-            const { id, isInCache } = action.meta;
-
-            return {
-                ...state,
-                post: {
-                    ...reducerUtils.success<Post>(action.payload),
-                    cache: isInCache ? state.post.cache : state.post.cache.concat( { id, data: action.payload } )
+                    ...state.post,
+                    [id]: { ...reducerUtils.loading<Post>( state.post[id]?.data ) }
                 }
             }
         }
 
-        case GET_POST_FAILURE:
+        case GET_POST_SUCCESS: {
+            const { meta: {id} } = action;
             return {
                 ...state,
                 post: {
-                    ...reducerUtils.failure(action.payload),
-                    cache: state.post.cache
+                    ...state.post,
+                    [id]: { ...reducerUtils.success<Post>(action.payload) }
                 }
             }
+        }
+
+        case GET_POST_FAILURE:{
+            const { meta: {id} } = action;
+            return {
+                ...state,
+                post: {
+                    ...state.post,
+                    [id]: { ...reducerUtils.failure(action.payload) }
+                }
+            }
+        }
 
         default: 
             return { ...state }

@@ -9,12 +9,12 @@ function PostDetail () {
 
     const { id } =  useParams<{id: string}>()
 
-    const { post, getPost, clearPost } = usePosts();
+    const { post, getPost, clearPost } = usePosts(+id);
     useEffect(() => {
         getPost(+id);
-        return () => {
-            clearPost();
-        }
+        // return () => {
+        //     clearPost();
+        // }
     }, [getPost, clearPost, id]);
 
     const { loading, data } = post;
