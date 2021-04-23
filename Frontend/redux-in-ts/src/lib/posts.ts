@@ -10,7 +10,7 @@ export const createActionCreators = <T extends typeof GET_POST | typeof GET_POST
 
     return {
         get: () => ({type}),
-        success: (payload: Post | Post[]) => ({type: SUCCESS, payload}),
+        success: (payload: Post[]) => ({type: SUCCESS, payload}),
         failure: (payload: Error) => ({type: FAILURE, payload})
     }
 }
@@ -59,10 +59,8 @@ export const reducerUtils = {
 }
 
 export const handleAction = (
-    // type: typeof GET_POST | typeof GET_POSTS,
-    type: typeof GET_POSTS,
-    // key: 'post' | 'posts',
-    key: 'posts',
+    type: typeof GET_POST | typeof GET_POSTS,
+    key: 'post' | 'posts',
     keepData: boolean = false
 ) => (
     state: PostsState, action: PostsAction
@@ -73,7 +71,7 @@ export const handleAction = (
         case type:
             return {
                 ...state,
-                [key]: reducerUtils.loading( keepData ? state[key].data : null )
+                // [key]: reducerUtils.loading( keepData ? state[key].data : null )
             }
         
         case SUCCESS:

@@ -1,22 +1,14 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
 
-
 import { usePosts } from "../hooks";
 
 
 function PostDetail () {
 
     const { id } =  useParams<{id: string}>()
-
-    const { post, getPost, clearPost } = usePosts(+id);
-    useEffect(() => {
-        getPost(+id);
-        // return () => {
-        //     clearPost();
-        // }
-    }, [getPost, clearPost, id]);
-
+    const { post, getPost } = usePosts(+id);
+    useEffect(() => { getPost(+id) }, [getPost, id]);
     const { loading, data } = post;
 
     return (
