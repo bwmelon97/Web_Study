@@ -13,7 +13,9 @@ const initialState: GithubUserState = {
 const githubUser = createReducer<GithubUserState, GithubUserAction>(initialState, {
     [GET_GITHUB_USER]: state => ({
         ...state,
-        loading: true
+        loading: true,
+        data: null,
+        error: null
     }),
     [GET_GITHUB_USER_SUCCESS]: (state, action) => ({
         ...state,
