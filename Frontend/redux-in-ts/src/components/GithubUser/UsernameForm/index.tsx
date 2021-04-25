@@ -1,5 +1,8 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
+
 import { useGithubUser } from "../../../hooks";
+import * as S from "./UsernameForm.style";
+
 
 function UsernameForm () {
 
@@ -16,10 +19,10 @@ function UsernameForm () {
     }
 
     return (
-        <form onSubmit={onSubmit} >
-            <input onChange={onChange} value={value} placeholder="Github 계정명을 입력하세요." />
-            <button type='submit' >조회</button>
-        </form>
+        <S.GithubUsernameForm onSubmit={onSubmit} >
+            <S.FormInput onChange={onChange} value={value} placeholder="Github 계정명을 입력하세요." />
+            <S.FormButton type='submit' >조회</S.FormButton>
+        </S.GithubUsernameForm>
     )
 }
 
