@@ -1,26 +1,59 @@
 import { createReducer } from "typesafe-actions"
 
-import { GET_GITHUB_USER, GET_GITHUB_USER_FAILURE, GET_GITHUB_USER_SUCCESS } from "./action"
+import { getGithubUserAsync } from "./action"
 import { GithubUserAction, GithubUserState } from "./type"
-import { asyncState } from "../../lib/reducerUtils";
+import { asyncActionsToArray, asyncState, asyncStateHandler } from "../../lib/reducerUtils";
 
 
-const initialState: GithubUserState = asyncState.initiate();
+const initialState: GithubUserState = { githubUser: asyncState.initiate() };
 
-const githubUser = createReducer<GithubUserState, GithubUserAction>(initialState, {
-    [GET_GITHUB_USER]: state => ({
-        ...state,
-        ...asyncState.load()
-    }),
-    [GET_GITHUB_USER_SUCCESS]: (state, action) => ({
-        ...state,
-        ...asyncState.success(action.payload)
-    }),
-    [GET_GITHUB_USER_FAILURE]: (state, action) => ({
-        ...state,
-        ...asyncState.failure(action.payload)
+const githubUser = createReducer<GithubUserState, GithubUserAction>(initialState).handleAction(
+    asyncActionsToArray(getGithubUserAsync),
+    asyncStateHandler(getGithubUserAsync, 'githubUser')
+)
+
+export default githubUser;
+
+
+/*
+    .handleAction([add, increment], (state, action) =>
+        state + (action.type === 'ADD' ? action.payload : 1)
+    );
+
+    const githubUser = createReducer<...>(initialState)
+    .handleAction([R, S, F], (state, action) => {
+        switch(action.type) { ... }
     })
-})
+*/
 
+// const githubUser = createReducer<GithubUserState, GithubUserAction>(initialState)
+//     .handleAction([
+//         getGithubUserAsync.request, 
+//         getGithubUserAsync.success, 
+//         getGithubUserAsync.failure, 
+//     ], (state, action) => {
+//         switch (action.type) {
+//             case GET_GITHUB_USER:
+//                 return {
+//                     ...state,
+//                     githubUser: asyncState.load()
+//                 }
 
-export default githubUser
+//             case GET_GITHUB_USER_SUCCESS: 
+//                 return {
+//                     ...state,
+//                     githubUser: asyncState.success(action.payload)
+//                 }
+
+//             case GET_GITHUB_USER_FAILURE:
+//                 return {
+//                     ...state,
+//                     githubUser: asyncState.failure(action.payload)
+//                 }
+
+//             default: 
+//                 return {
+//                     ...state
+//                 }
+//         }
+//     })

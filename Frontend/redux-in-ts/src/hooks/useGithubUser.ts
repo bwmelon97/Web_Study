@@ -4,7 +4,7 @@ import { RootState } from "../modules";
 import { getGithubUserThunk } from "../modules/githubUser";
 
 const useGithubUser = () => {
-    const githubUser = useSelector( (state: RootState) => state.githubUser )
+    const githubUser = useSelector( (state: RootState) => state.githubUser.githubUser )
     
     const dispatch = useDispatch();
     const getGithubUser = useCallback(

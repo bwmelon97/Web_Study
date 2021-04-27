@@ -1,3 +1,5 @@
+import { AsyncActionCreatorBuilder } from "typesafe-actions"
+
 export type AsyncState<T, E = any> = {
     loading:    boolean;
     data:       T | null;
@@ -26,3 +28,44 @@ export const asyncState = {
         error
     })
 }
+
+type AnyAsyncActionCreator = AsyncActionCreatorBuilder<any, any, any>
+
+export const asyncStateHandler = <
+    S,
+    AC extends AnyAsyncActionCreator,
+    K extends keyof S
+> (asyncActionCreator: AC, key: K) => {
+    const { request, success, failure } = asyncActionCreator
+    type ActionType = ReturnType<typeof request> | ReturnType<typeof success> | ReturnType<typeof failure>
+
+    return ( state: S, action: ActionType ) => {
+        switch(action.type) {
+            case request().type:
+                return {
+                    ...state,
+                    [key]: asyncState.load()
+                }
+
+            case success().type: 
+                return {
+                    ...state,
+                    [key]: asyncState.success(action.payload)
+                }
+
+            case failure().type:
+                return {
+                    ...state,
+                    [key]: asyncState.failure(action.payload)
+                }
+
+            default: return { ...state }
+        }
+    }
+}
+
+export const asyncActionsToArray = ( asyncActions: AnyAsyncActionCreator ) => [
+    asyncActions.request,  
+    asyncActions.success,
+    asyncActions.failure
+]

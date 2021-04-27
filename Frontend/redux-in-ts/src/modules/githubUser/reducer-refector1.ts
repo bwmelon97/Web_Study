@@ -2,34 +2,24 @@ import { createReducer } from "typesafe-actions"
 
 import { GET_GITHUB_USER, GET_GITHUB_USER_FAILURE, GET_GITHUB_USER_SUCCESS } from "./action"
 import { GithubUserAction, GithubUserState } from "./type"
+import { asyncState } from "../../lib/reducerUtils";
 
 
-const initialState: GithubUserState = {
-    githubUser: {
-        loading: false,
-        data: null,
-        error: null
-    }
-}
+const initialState: GithubUserState = { githubUser: asyncState.initiate() };
 
 const githubUser = createReducer<GithubUserState, GithubUserAction>(initialState, {
     [GET_GITHUB_USER]: state => ({
         ...state,
-        loading: true,
-        data: null,
-        error: null
+        githubUser: asyncState.load()
     }),
     [GET_GITHUB_USER_SUCCESS]: (state, action) => ({
         ...state,
-        loading: false,
-        data: action.payload
+        githubUser: asyncState.success(action.payload)
     }),
     [GET_GITHUB_USER_FAILURE]: (state, action) => ({
         ...state,
-        loading: false,
-        error: action.payload   
+        githubUser: asyncState.failure(action.payload)
     })
 })
-
 
 export default githubUser
