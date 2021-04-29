@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
 import counter from "./counter";
-import posts from "./posts";
+// import posts from "./posts";
+import {posts, post} from "./posts";
 import githubUser from "./githubUser";
 
 const rootReducer = combineReducers({
-    counter, posts, githubUser
+    counter, posts, post, githubUser
 })
 
 export default rootReducer;
