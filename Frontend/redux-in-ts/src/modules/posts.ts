@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
-import { Post, getPosts, getPost } from "../../api/posts";
-import { createActionCreators, createPostsThunk, reducerUtils } from "../../lib/posts";
+import { Post, getPosts, getPost } from "../api/posts";
+import { createActionCreators, createPostsThunk, reducerUtils } from "../lib/posts";
 
 /* Action Types */
 export const GET_POSTS = 'posts/GET_POSTS' as const;

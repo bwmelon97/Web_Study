@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { Post, getPosts, getPost } from "../../api/posts";
+import { Post, getPosts, getPost } from "../api/posts";
 
 /* Action Types */
 const GET_POSTS = 'posts/GET_POSTS' as const;

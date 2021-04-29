@@ -6,7 +6,7 @@ import { getPostsReq, getPostReqById } from "../modules/posts";
 function usePosts (id?: number) {
     const posts = useSelector( (state: RootState) => state.posts.posts )
     const post = useSelector( 
-        (state: RootState) => state.post.post[id as number] 
+        (state: RootState) => state.posts.post[id as number] 
     ) || {
         loading: false,
         data: null,
