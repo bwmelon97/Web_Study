@@ -45,4 +45,4 @@ $ yarn add styled-components & yarn add @types/styled-components
 
 ### 종합
 * 호쏘공 프로젝트
-* Nuber-Eats 클론 코딩
+* Nuber-Eats 클론 코딩 
